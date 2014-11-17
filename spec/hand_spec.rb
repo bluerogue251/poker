@@ -23,5 +23,27 @@ describe Hand do
       ]
       expect(Hand.new(cards).combo).to eq :straight_flush
     end
+
+    it "Knows about Four of a kinds" do
+      cards = [
+        double(pips: 9,  suit: :clubs),
+        double(pips: 9,  suit: :hearts),
+        double(pips: 9,  suit: :spades),
+        double(pips: 9,  suit: :diamonds),
+        double(pips: 10, suit: :diamonds)
+      ]
+      expect(Hand.new(cards).combo).to eq :four_of_a_kind
+    end
+
+    it "Knows about Three of a kinds" do
+      cards = [
+        double(pips: 9,  suit: :clubs),
+        double(pips: 9,  suit: :hearts),
+        double(pips: 9,  suit: :spades),
+        double(pips: 10, suit: :diamonds),
+        double(pips: 10, suit: :spades)
+      ]
+      expect(Hand.new(cards).combo).to eq :three_of_a_kind
+    end
   end
 end
