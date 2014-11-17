@@ -12,6 +12,10 @@ class Hand
       :four_of_a_kind
     elsif of_a_kind?(3)
       :three_of_a_kind
+    elsif of_a_kind?(2)
+      :one_pair
+    else
+      :high_card
     end
   end
 

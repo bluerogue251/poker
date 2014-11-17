@@ -45,5 +45,27 @@ describe Hand do
       ]
       expect(Hand.new(cards).combo).to eq :three_of_a_kind
     end
+
+    it "Knows about One pair" do
+      cards = [
+        double(pips: 9,  suit: :clubs),
+        double(pips: 9,  suit: :hearts),
+        double(pips: 8,  suit: :spades),
+        double(pips: 7,  suit: :diamonds),
+        double(pips: 6,  suit: :spades)
+      ]
+      expect(Hand.new(cards).combo).to eq :one_pair
+    end
+
+    it "Knows about high card" do
+      cards = [
+        double(pips: 10, suit: :clubs),
+        double(pips: 9,  suit: :hearts),
+        double(pips: 8,  suit: :spades),
+        double(pips: 7,  suit: :diamonds),
+        double(pips: 6,  suit: :spades)
+      ]
+      expect(Hand.new(cards).combo).to eq :high_card
+    end
   end
 end
