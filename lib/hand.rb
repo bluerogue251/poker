@@ -10,6 +10,8 @@ class Hand
       :straight_flush
     elsif of_a_kind?(4)
       :four_of_a_kind
+    elsif full_house?
+      :full_house
     elsif of_a_kind?(3)
       :three_of_a_kind
     elsif of_a_kind?(2)
@@ -30,8 +32,12 @@ class Hand
     flush? && straight?
   end
 
+  def full_house?
+    of_a_kind?(3) && of_a_kind?(2)
+  end
+
   def of_a_kind?(number)
-    pips.each_with_object(Hash.new(0)) { |pip, counts| counts[pip] += 1 }.values.max == number
+    pips.each_with_object(Hash.new(0)) { |pip, counts| counts[pip] += 1 }.values.include?(number)
   end
 
   def flush?

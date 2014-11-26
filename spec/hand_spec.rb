@@ -35,12 +35,34 @@ describe Hand do
       expect(Hand.new(cards).combo).to eq :four_of_a_kind
     end
 
-    it "Knows about Three of a kinds" do
+    it "Knows about Full houses" do
       cards = [
         double(pips: 9,  suit: :clubs),
         double(pips: 9,  suit: :hearts),
         double(pips: 9,  suit: :spades),
-        double(pips: 10, suit: :diamonds),
+        double(pips: 10, suit: :hearts),
+        double(pips: 10, suit: :diamonds)
+      ]
+      expect(Hand.new(cards).combo).to eq :full_house
+    end
+
+    it "Knows about Flushes" do
+      cards = [
+        double(pips: 2, suit: :clubs),
+        double(pips: 4, suit: :clubs),
+        double(pips: 6, suit: :clubs),
+        double(pips: 7, suit: :clubs),
+        double(pips: 9, suit: :clubs)
+      ]
+      expect(Hand.new(cards).combo).to eq :flush
+    end
+
+    it "Knows about Three of a kinds" do
+      cards = [
+        double(pips: 8,  suit: :clubs),
+        double(pips: 9,  suit: :hearts),
+        double(pips: 9,  suit: :spades),
+        double(pips: 9,  suit: :diamonds),
         double(pips: 10, suit: :spades)
       ]
       expect(Hand.new(cards).combo).to eq :three_of_a_kind
