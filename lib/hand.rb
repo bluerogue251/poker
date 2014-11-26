@@ -12,6 +12,8 @@ class Hand
       :four_of_a_kind
     elsif full_house?
       :full_house
+    elsif flush?
+      :flush
     elsif of_a_kind?(3)
       :three_of_a_kind
     elsif of_a_kind?(2)
@@ -37,27 +39,22 @@ class Hand
   end
 
   def of_a_kind?(number)
-    pips.each_with_object(Hash.new(0)) { |pip, counts| counts[pip] += 1 }.values.include?(number)
+    pips.of_a_kind?(number)
   end
 
   def flush?
     @flush ||= cards.map(&:suit).uniq.length == 1
   end
 
-  # FIXME
   def straight?
-    true
+    pips.straight?
   end
 
   def royal?
-    (pips - royal_pips).empty? && (royal_pips - pips).empty?
+    pips.royal?
   end
 
   def pips
-    @pips ||= cards.map(&:pips)
-  end
-
-  def royal_pips
-    [10, :jack, :queen, :king, :ace]
+    @pips ||= Pips.new(cards.map(&:pips))
   end
 end
