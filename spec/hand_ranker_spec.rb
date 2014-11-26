@@ -1,12 +1,6 @@
 require 'hand_ranker'
 
 describe HandRanker do
-  it "Values high_card over nothing" do
-    high_card = double(combo: :high_card)
-    nothing = double(combo: :nothing)
-    expect(HandRanker.new([high_card, nothing]).winner).to eq high_card
-  end
-
   it "Values one_pair over high card" do
     high_card = double(combo: :high_card)
     one_pair = double(combo: :one_pair)

@@ -1,7 +1,7 @@
 require 'pips'
 
 describe Pips do
-  describe "self#straight?" do
+  describe "#straight?" do
     it "Returns true if the pips are a straight" do
       pips = Pips.new([3, 4, 5, 6, 7])
       expect(pips.straight?).to eq true
@@ -33,7 +33,7 @@ describe Pips do
     end
   end
 
-  describe "self#royal?" do
+  describe "#royal?" do
     it "Returns true if the pips are royal" do
       pips = Pips.new([:king, 10, :ace, :jack, :queen])
       expect(pips.royal?).to eq true
