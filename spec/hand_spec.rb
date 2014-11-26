@@ -57,6 +57,17 @@ describe Hand do
       expect(Hand.new(cards).combo).to eq :flush
     end
 
+    it "Knows about Straights" do
+      cards = [
+        double(pips: :jack,  suit: :hearts),
+        double(pips: 10,     suit: :clubs),
+        double(pips: :queen, suit: :clubs),
+        double(pips: 8,      suit: :clubs),
+        double(pips: 9,      suit: :clubs)
+      ]
+      expect(Hand.new(cards).combo).to eq :straight
+    end
+
     it "Knows about Three of a kinds" do
       cards = [
         double(pips: 8,  suit: :clubs),
@@ -85,7 +96,7 @@ describe Hand do
         double(pips: 9,  suit: :hearts),
         double(pips: 8,  suit: :spades),
         double(pips: 7,  suit: :diamonds),
-        double(pips: 6,  suit: :spades)
+        double(pips: 5,  suit: :spades)
       ]
       expect(Hand.new(cards).combo).to eq :high_card
     end

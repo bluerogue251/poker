@@ -1,3 +1,5 @@
+require 'pips'
+
 class Hand
   def initialize(cards)
     @cards = cards
@@ -14,6 +16,8 @@ class Hand
       :full_house
     elsif flush?
       :flush
+    elsif straight?
+      :straight
     elsif of_a_kind?(3)
       :three_of_a_kind
     elsif of_a_kind?(2)
