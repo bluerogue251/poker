@@ -31,7 +31,7 @@ class CardParser
       "q"  => :queen,
       "k"  => :king,
       "a"  => :ace
-    }.fetch(string[0])
+    }.fetch(string[0..-2])
   end
 
   def suit
@@ -40,6 +40,6 @@ class CardParser
       "h"  => :hearts,
       "s"  => :spades,
       "d"  => :diamonds
-    }.fetch(string[1])
+    }.fetch(string[-1])
   end
 end

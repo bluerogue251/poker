@@ -7,6 +7,12 @@ describe CardParser do
     expect(card.suit).to eq :hearts
   end
 
+  it "Can deal with 10" do
+    card = CardParser.card_from("10s")
+    expect(card.pips).to eq 10
+    expect(card.suit).to eq :spades
+  end
+
   it "Fails upon invalid input" do
     expect {
       CardParser.card_from("x")
